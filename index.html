@@ -11,13 +11,16 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #e0f2fe; /* Fallback */
-            background-image: url('https://i.pinimg.com/originals/51/00/5c/51005c74d237ed1e1d0ee39b4092c700.jpg');
+            background-image: url('https://images.unsplash.com/photo-1549558549-415fe4c37b60?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
             margin: 0;
             padding: 0;
+            /* 텍스트 선명도 향상 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         /* 스크롤바 숨기기 (모바일에서 깔끔하게) */
@@ -28,11 +31,8 @@
             background: rgba(255, 255, 255, 0.1); 
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(14, 165, 233, 0.5); 
+            background: rgba(255, 255, 255, 0.5); 
             border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(14, 165, 233, 0.8); 
         }
 
         .chart-container {
@@ -49,38 +49,85 @@
             }
         }
         
-        /* 공통 글래스모피즘 효과 (배경이 비치게) */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        /* 핀터레스트풍 뉴모피즘 + 글래스모피즘 공통 클래스 */
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            border-radius: 2.5rem; /* 매우 둥근 모서리 */
+            transition: all 0.3s ease;
+        }
+
+        .premium-glass:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        /* 둥근 알약형 버튼/태그 */
+        .premium-glass-pill {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05), inset 0 2px 6px rgba(255, 255, 255, 0.8);
+            border-radius: 9999px; /* 완전한 알약 형태 */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
 
-        .glass-inner {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .premium-glass-pill:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), inset 0 2px 6px rgba(255, 255, 255, 0.9);
         }
 
-        .dark-glass {
-            background: rgba(15, 23, 42, 0.85); /* Slate 900 투명도 */
+        /* 클릭 가능한 버튼용 */
+        .premium-glass-pill.interactive:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), inset 0 2px 6px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 내부 컨텐츠용 소프트 파스텔 글래스 */
+        .premium-glass-inner {
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7); /* 하단을 약간 밝게하여 둥근 느낌 부여 */
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+            border-radius: 2rem;
+        }
+
+        /* 어두운 바탕 글래스모피즘 */
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+            border-radius: 2.5rem;
         }
 
         /* 타임라인 커넥터 */
         .step-connector {
             position: absolute;
-            left: 1.25rem;
-            top: 2rem;
-            bottom: -2rem;
-            width: 2px;
-            background-color: rgba(14, 165, 233, 0.3);
+            left: 1.5rem;
+            top: 3rem;
+            bottom: -1rem;
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
             z-index: 0;
+            border-radius: 999px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
         .last-connector .step-connector {
             display: none;
@@ -91,16 +138,17 @@
             position: relative;
             padding-left: 1rem;
             margin-bottom: 0.35rem;
-            color: #334155;
+            color: #1e293b;
             font-size: 0.875rem;
             line-height: 1.5;
+            font-weight: 500;
         }
         .curriculum-list li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: #0ea5e9;
-            font-weight: bold;
+            color: #0284c7;
+            font-weight: 900;
         }
 
         /* 모바일 패딩 조정 최적화 */
@@ -114,13 +162,11 @@
 
     <!-- Header Section -->
     <header class="pt-16 pb-12 px-4 relative overflow-hidden">
-        <!-- 오버레이 추가 (글씨 가독성) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-white/60 to-transparent pointer-events-none"></div>
-        <div class="max-w-6xl mx-auto text-center relative z-10">
+        <div class="max-w-6xl mx-auto text-center relative z-10 font-bold">
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight leading-tight text-slate-800 drop-shadow-sm">고원장 모공세척 창업교육</h1>
-            <p class="text-lg md:text-2xl font-bold text-sky-800 opacity-90 mb-6 drop-shadow-sm">20년 원조 기술 · 특허 등록 테라피 · 본점 정규과정</p>
-            <div class="inline-block bg-amber-400 text-slate-900 font-extrabold px-6 py-3 rounded-full shadow-lg border border-amber-300 transform transition hover:scale-105 hover:bg-amber-500">
-                정규 14회 커리큘럼 + 창업 컨설팅
+            <p class="text-lg md:text-2xl font-bold text-sky-900 opacity-90 mb-8 drop-shadow-sm">20년 원조 기술 · 특허 등록 테라피 · 본점 정규과정</p>
+            <div class="premium-glass-pill px-8 py-3 text-slate-800 font-extrabold shadow-lg">
+                정규 14회 커리큘럼 + 창업 컨설팅 🚀
             </div>
         </div>
     </header>
@@ -128,54 +174,57 @@
     <main class="max-w-6xl mx-auto px-4 py-8 space-y-12 md:space-y-16 mobile-space-y-8">
 
         <!-- Intro Text -->
-        <section class="text-center max-w-3xl mx-auto glass-card p-6 md:p-8 rounded-3xl">
-            <h2 class="text-2xl font-bold text-sky-800 mb-4">실전 중심의 전문가 양성 시스템</h2>
-            <p class="text-base md:text-lg text-slate-700 leading-relaxed font-medium">
+        <section class="text-center max-w-3xl mx-auto premium-glass p-8 md:p-10 relative overflow-hidden">
+            <h2 class="text-2xl font-black text-sky-900 mb-4 drop-shadow-sm">실전 중심의 전문가 양성 시스템</h2>
+            <p class="text-base md:text-lg text-slate-800 leading-relaxed font-semibold">
                 모공세척은 20년 전통·특허 등록된 고원장이 원조입니다.<br class="hidden md:block">
-                단순 이론이 아닌 <strong>실전 중심의 테크닉</strong>으로, <br class="hidden md:block">
+                단순 이론이 아닌 <strong class="text-sky-700 bg-white/50 px-2 py-0.5 rounded-lg border border-white/60">실전 중심의 테크닉</strong>으로, <br class="hidden md:block">
                 수료 후 즉시 현장에 투입될 수 있는 실력이 몸에 붙을 수 있도록 교육합니다.
             </p>
         </section>
 
         <!-- New Section: Class Types -->
         <section>
-            <div class="text-center mb-8">
-                <span class="bg-white/80 text-amber-600 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm tracking-wider uppercase border border-amber-200 backdrop-blur-md">Class Types</span>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-4 drop-shadow-sm">맞춤형 교육 클래스 운영</h2>
-                <p class="text-slate-600 mt-2 font-medium">목적에 따라 선택 가능한 3가지 전문 과정</p>
+            <div class="text-center mb-10 flex flex-col items-center">
+                <span class="premium-glass-pill px-6 py-2 text-sky-800 text-xs font-black tracking-widest uppercase mb-4">Class Types</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-800 drop-shadow-sm">맞춤형 교육 클래스 운영</h2>
+                <p class="text-slate-800 font-medium mt-2 bg-white/40 px-4 py-1 rounded-full border border-white/50 backdrop-blur-sm">목적에 따라 선택 가능한 3가지 전문 과정</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 <!-- 원데이반 -->
-                <div class="glass-card rounded-3xl p-6 md:hover:-translate-y-2 transition-transform duration-300 border-t-4 border-slate-400 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">🌱</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">원데이반</h3>
-                    <p class="text-slate-600 text-sm mb-5 font-medium">적성 확인 및 핵심 체험</p>
-                    <ul class="text-sm text-slate-700 space-y-3 glass-inner w-full p-4 rounded-2xl">
-                        <li class="flex items-start"><span class="mr-2 text-slate-500 font-bold">✓</span>모공세척 기술 체험</li>
-                        <li class="flex items-start"><span class="mr-2 text-slate-500 font-bold">✓</span>기본 원리 및 효과 이해</li>
-                        <li class="flex items-start"><span class="mr-2 text-slate-500 font-bold">✓</span>교육 적성 테스트</li>
+                <div class="premium-glass p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-white/80 backdrop-blur-xl rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)]">🌱</div>
+                    <h3 class="text-2xl font-black text-slate-800 mb-2">원데이반</h3>
+                    <p class="text-slate-700 text-sm mb-6 font-bold bg-white/40 px-3 py-1 rounded-full">적성 확인 및 핵심 체험</p>
+                    <ul class="text-sm text-slate-800 space-y-3 premium-glass-inner w-full p-6 text-left">
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>모공세척 기술 체험</li>
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>기본 원리 및 효과 이해</li>
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>교육 적성 테스트</li>
                     </ul>
                 </div>
 
                 <!-- 창업반 (Main) -->
-                <div class="glass-card rounded-3xl p-6 transform md:scale-105 border-t-4 border-sky-500 relative overflow-hidden flex flex-col items-center shadow-2xl z-10 bg-white/85">
-                    <div class="absolute top-0 right-0 bg-sky-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-md">BEST</div>
-                    <div class="w-16 h-16 bg-sky-100/80 backdrop-blur-md rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">🚀</div>
-                    <h3 class="text-xl md:text-2xl font-extrabold text-sky-800 mb-2">창업반 (정규)</h3>
-                    <p class="text-sky-600 text-sm mb-5 font-bold">14회 마스터 & 창업 컨설팅</p>
-                    <ul class="text-sm text-slate-800 space-y-3 glass-inner w-full p-4 rounded-2xl border-sky-100 font-medium">
-                        <li class="flex items-start"><span class="mr-2 text-sky-500 font-bold">✓</span>기술부터 창업까지 All-in-One</li>
-                        <li class="flex items-start"><span class="mr-2 text-sky-500 font-bold">✓</span>특허 기술 완벽 전수</li>
-                        <li class="flex items-start"><span class="mr-2 text-sky-500 font-bold">✓</span>상호 사용 및 마케팅 지원</li>
+                <div class="premium-glass p-8 transform md:scale-105 relative flex flex-col items-center text-center z-10 border-2 border-sky-300">
+                    <div class="absolute -top-4 premium-glass-pill bg-sky-500/90 text-white border-none shadow-[0_4px_15px_rgba(14,165,233,0.3)] px-6 py-1.5 text-sm font-black">
+                        BEST
+                    </div>
+                    <div class="w-20 h-20 bg-sky-100/90 backdrop-blur-xl rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)] mt-4">🚀</div>
+                    <h3 class="text-2xl md:text-3xl font-black text-sky-900 mb-2">창업반 (정규)</h3>
+                    <p class="text-sky-800 text-sm mb-6 font-bold bg-white/50 px-3 py-1 rounded-full">14회 마스터 & 창업 컨설팅</p>
+                    <ul class="text-sm text-slate-800 space-y-3 premium-glass-inner w-full p-6 text-left">
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>기술부터 창업까지 All-in-One</li>
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>특허 기술 완벽 전수</li>
+                        <li class="flex items-start"><span class="mr-2 text-sky-600 font-bold">✓</span>상호 사용 및 마케팅 지원</li>
                     </ul>
                 </div>
 
                 <!-- 메뉴 추가반 -->
-                <div class="glass-card rounded-3xl p-6 md:hover:-translate-y-2 transition-transform duration-300 border-t-4 border-amber-400 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-amber-50/80 backdrop-blur-md rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">➕</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">메뉴 추가반</h3>
-                    <p class="text-slate-600 text-sm mb-5 font-medium">기존 샵 매출 증대</p>
-                    <ul class="text-sm text-slate-700 space-y-3 glass-inner w-full p-4 rounded-2xl border-amber-100">
+                <div class="premium-glass p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-amber-50/90 backdrop-blur-xl rounded-full flex items-center justify-center text-4xl mb-6 shadow-sm border border-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)]">➕</div>
+                    <h3 class="text-2xl font-black text-slate-800 mb-2">메뉴 추가반</h3>
+                    <p class="text-slate-700 text-sm mb-6 font-bold bg-white/40 px-3 py-1 rounded-full">기존 샵 매출 증대</p>
+                    <ul class="text-sm text-slate-800 space-y-3 premium-glass-inner w-full p-6 text-left">
                         <li class="flex items-start"><span class="mr-2 text-amber-500 font-bold">✓</span>기존 원장님 대상</li>
                         <li class="flex items-start"><span class="mr-2 text-amber-500 font-bold">✓</span>모공세척 신규 메뉴 도입</li>
                         <li class="flex items-start"><span class="mr-2 text-amber-500 font-bold">✓</span>핵심 실무 속성 교육</li>
@@ -185,83 +234,91 @@
         </section>
 
         <!-- Visualization 1: Curriculum Composition -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center">
-            <div class="glass-card rounded-3xl p-6 md:p-8">
-                <h3 class="text-xl font-bold text-slate-800 mb-2 border-l-4 border-sky-500 pl-3">교육 과정 구성 비율</h3>
-                <p class="text-sm text-slate-600 mb-6 font-medium">총 14회 과정 중 각 파트가 차지하는 비중</p>
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="premium-glass p-8 md:p-10">
+                <div class="premium-glass-pill px-4 py-1.5 text-sky-700 font-black text-sm mb-4">교육 비중</div>
+                <h3 class="text-2xl font-black text-slate-800 mb-2">교육 과정 구성 비율</h3>
+                <p class="text-sm text-slate-700 mb-8 font-bold">총 14회 과정 중 각 파트가 차지하는 비중</p>
                 <div class="chart-container">
                     <canvas id="curriculumChart"></canvas>
                 </div>
             </div>
             
             <!-- Key Highlights Grid -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="glass-inner p-5 rounded-2xl border-t-4 border-sky-500 hover:bg-white/80 transition-colors">
-                    <div class="text-3xl mb-2 drop-shadow-sm">💧</div>
-                    <h4 class="font-bold text-slate-800 mb-1">모공세척 & 아쿠아필</h4>
-                    <p class="text-xs md:text-sm text-slate-600 font-medium">특허받은 원조 기술</p>
+            <div class="grid grid-cols-2 gap-5">
+                <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">💧</div>
+                    <h4 class="font-black text-slate-800 mb-1 lg:text-lg">모공세척 & 아쿠아필</h4>
+                    <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">특허받은 원조 기술</p>
                 </div>
-                <div class="glass-inner p-5 rounded-2xl border-t-4 border-cyan-500 hover:bg-white/80 transition-colors">
-                    <div class="text-3xl mb-2 drop-shadow-sm">💆♀️</div>
-                    <h4 class="font-bold text-slate-800 mb-1">윤곽수기 & 데콜테</h4>
-                    <p class="text-xs md:text-sm text-slate-600 font-medium">전문 핸드 테크닉</p>
+                <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">💆♀️</div>
+                    <h4 class="font-black text-slate-800 mb-1 lg:text-lg">윤곽수기 & 데콜테</h4>
+                    <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">전문 핸드 테크닉</p>
                 </div>
-                <div class="glass-inner p-5 rounded-2xl border-t-4 border-amber-500 hover:bg-white/80 transition-colors">
-                    <div class="text-3xl mb-2 drop-shadow-sm">🧍</div>
-                    <h4 class="font-bold text-slate-800 mb-1">등 & 액와 & 두피</h4>
-                    <p class="text-xs md:text-sm text-slate-600 font-medium">전신 순환 케어</p>
+                <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">🧍</div>
+                    <h4 class="font-black text-slate-800 mb-1 lg:text-lg">등 & 액와 & 두피</h4>
+                    <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">전신 순환 케어</p>
                 </div>
-                <div class="glass-inner p-5 rounded-2xl border-t-4 border-indigo-500 hover:bg-white/80 transition-colors">
-                    <div class="text-3xl mb-2 drop-shadow-sm">🚀</div>
-                    <h4 class="font-bold text-slate-800 mb-1">실전 창업</h4>
-                    <p class="text-xs md:text-sm text-slate-600 font-medium">메뉴/가격/노하우 전수</p>
+                <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">🚀</div>
+                    <h4 class="font-black text-slate-800 mb-1 lg:text-lg">실전 창업</h4>
+                    <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">메뉴/가격/노하우 전수</p>
                 </div>
             </div>
         </section>
 
         <!-- Schedule Section -->
         <section>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                <div class="glass-card rounded-3xl p-6 text-center hover:bg-white/80 transition-colors border-t-4 border-sky-400">
-                    <div class="text-4xl md:text-5xl mb-4 drop-shadow-sm">📅</div>
-                    <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">교육 일정</h3>
-                    <p class="text-slate-700 font-extrabold text-lg">주 2~3회</p>
-                    <p class="text-xs md:text-sm text-sky-700 font-semibold mt-1">(상호 협의하여 조정)</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="premium-glass p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-white/70 backdrop-blur-lg rounded-full flex items-center justify-center text-4xl mb-6 shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] border border-white">📅</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-3">교육 일정</h3>
+                    <div class="premium-glass-inner px-6 py-3 w-full">
+                        <p class="text-sky-900 font-black text-lg">주 2~3회</p>
+                        <p class="text-xs text-slate-600 font-bold mt-1">(상호 협의하여 조정)</p>
+                    </div>
                 </div>
-                <div class="glass-card rounded-3xl p-6 text-center hover:bg-white/80 transition-colors border-t-4 border-sky-400">
-                    <div class="text-4xl md:text-5xl mb-4 drop-shadow-sm">⏰</div>
-                    <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">교육 시간</h3>
-                    <p class="text-slate-700 font-bold">오전 10:00 시작</p>
-                    <p class="text-slate-700 font-bold mt-1">일 4시간 집중 교육</p>
+                <div class="premium-glass p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-white/70 backdrop-blur-lg rounded-full flex items-center justify-center text-4xl mb-6 shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] border border-white">⏰</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-3">교육 시간</h3>
+                    <div class="premium-glass-inner px-6 py-3 w-full">
+                        <p class="text-sky-900 font-black text-lg">오전 10:00 시작</p>
+                        <p class="text-sm text-slate-700 font-bold mt-1">일 4시간 집중 교육</p>
+                    </div>
                 </div>
-                <div class="glass-card rounded-3xl p-6 text-center hover:bg-white/80 transition-colors border-t-4 border-sky-400">
-                    <div class="text-4xl md:text-5xl mb-4 drop-shadow-sm">🤝</div>
-                    <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">맞춤 스케줄</h3>
-                    <p class="text-slate-700 font-bold">원장님 상황에 맞춰</p>
-                    <p class="text-slate-700 font-bold mt-1">유연한 일정 조율 가능</p>
+                <div class="premium-glass p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-white/70 backdrop-blur-lg rounded-full flex items-center justify-center text-4xl mb-6 shadow-[inset_0_2px_5px_rgba(255,255,255,0.9)] border border-white">🤝</div>
+                    <h3 class="text-xl font-black text-slate-800 mb-3">맞춤 스케줄</h3>
+                    <div class="premium-glass-inner px-6 py-3 w-full">
+                        <p class="text-sky-900 font-black text-lg">상황에 맞춘</p>
+                        <p class="text-sm text-slate-700 font-bold mt-1">유연한 일정 조율</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Detailed Curriculum Timeline -->
-        <section class="glass-card rounded-3xl p-6 md:p-12">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">📍 정규 14회 상세 커리큘럼</h2>
-                <p class="text-slate-600 mt-2 font-medium">기초부터 실전 창업 노하우까지 단계별 로드맵</p>
+        <section class="premium-glass p-8 md:p-14">
+            <div class="text-center mb-12 flex flex-col items-center">
+                <span class="premium-glass-pill px-6 py-2 text-sky-800 text-xs font-black tracking-widest uppercase mb-4">Roadmap</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-800">📍 정규 14회 상세 커리큘럼</h2>
+                <p class="text-slate-700 font-bold mt-3 bg-white/40 px-5 py-1.5 rounded-full border border-white/50 backdrop-blur-sm">기초부터 실전 창업 노하우까지 단계별 트레이닝</p>
             </div>
 
             <div class="space-y-0 relative">
                 <!-- Phase 1 -->
-                <div class="flex gap-4 md:gap-6 relative pb-10">
+                <div class="flex gap-6 relative pb-12">
                     <div class="flex-shrink-0 relative z-10">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-sky-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-lg">1</div>
+                        <div class="w-12 h-12 bg-white/90 border-4 border-sky-400 rounded-full flex items-center justify-center text-sky-600 font-black shadow-[0_4px_15px_rgba(56,189,248,0.4)] text-xl">1</div>
                         <div class="step-connector"></div>
                     </div>
-                    <div class="flex-grow pt-1">
-                        <h3 class="text-lg md:text-xl font-bold text-sky-800 mb-3">기초 입문 (1~3회차)</h3>
-                        <div class="glass-inner rounded-2xl p-4 md:p-5 space-y-4">
+                    <div class="flex-grow pt-1.5 pb-2">
+                        <h3 class="text-xl font-black text-sky-900 mb-4 flex items-center gap-2">기초 입문 <span class="text-sm font-bold text-sky-700 bg-sky-100/50 px-2 py-1 rounded-lg">1~3회차</span></h3>
+                        <div class="premium-glass-inner p-6 space-y-5">
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">1회차: 오리엔테이션</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">1회차: 오리엔테이션</span>
                                 <ul class="curriculum-list">
                                     <li>인사 및 교육 방향 안내</li>
                                     <li>사용 기계·제품 소개 및 폼클렌징 시연</li>
@@ -269,7 +326,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">2회차: 모공세척 이론</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">2회차: 모공세척 이론</span>
                                 <ul class="curriculum-list">
                                     <li>사용하는 미네랄 워터 설명</li>
                                     <li>모공세척이 꼭 필요한 이유 및 원리</li>
@@ -277,7 +334,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">3회차: 기초 실습</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">3회차: 기초 실습</span>
                                 <ul class="curriculum-list">
                                     <li>기본 클렌징 및 기초 테크닉 숙달</li>
                                 </ul>
@@ -287,23 +344,23 @@
                 </div>
 
                 <!-- Phase 2 -->
-                <div class="flex gap-4 md:gap-6 relative pb-10">
+                <div class="flex gap-6 relative pb-12">
                     <div class="flex-shrink-0 relative z-10">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-lg">2</div>
+                        <div class="w-12 h-12 bg-white/90 border-4 border-cyan-400 rounded-full flex items-center justify-center text-cyan-600 font-black shadow-[0_4px_15px_rgba(34,211,238,0.4)] text-xl">2</div>
                         <div class="step-connector"></div>
                     </div>
-                    <div class="flex-grow pt-1">
-                        <h3 class="text-lg md:text-xl font-bold text-cyan-700 mb-3">테크닉 습득 (4~7회차)</h3>
-                        <div class="glass-inner rounded-2xl p-4 md:p-5 space-y-4">
+                    <div class="flex-grow pt-1.5 pb-2">
+                        <h3 class="text-xl font-black text-cyan-900 mb-4 flex items-center gap-2">테크닉 습득 <span class="text-sm font-bold text-cyan-800 bg-cyan-100/50 px-2 py-1 rounded-lg">4~7회차</span></h3>
+                        <div class="premium-glass-inner p-6 space-y-5">
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">4회차: 아쿠아필 입문</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">4회차: 아쿠아필 입문</span>
                                 <ul class="curriculum-list">
                                     <li>폼클렌징·모공세척 복습</li>
                                     <li>아쿠아필 시연 및 실습</li>
                                 </ul>
                             </div>
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">5~6회차: 윤곽 수기 & 마스크팩</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">5~6회차: 윤곽 수기 & 마스크팩</span>
                                 <ul class="curriculum-list">
                                     <li>복습(폼클렌징·모공세척·아쿠아필)</li>
                                     <li>윤곽 수기 시연 및 연습</li>
@@ -311,7 +368,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">7회차: 필 관리 + 윤곽 집중</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">7회차: 필 관리 + 윤곽 집중</span>
                                 <ul class="curriculum-list">
                                     <li>필 제품 사용 및 윤곽 수기 연습</li>
                                     <li>마스크팩 마무리</li>
@@ -322,31 +379,30 @@
                 </div>
 
                 <!-- Phase 3 -->
-                <div class="flex gap-4 md:gap-6 relative pb-10">
+                <div class="flex gap-6 relative pb-12">
                     <div class="flex-shrink-0 relative z-10">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-lg">3</div>
+                        <div class="w-12 h-12 bg-white/90 border-4 border-indigo-400 rounded-full flex items-center justify-center text-indigo-600 font-black shadow-[0_4px_15px_rgba(129,140,248,0.4)] text-xl">3</div>
                         <div class="step-connector"></div>
                     </div>
-                    <div class="flex-grow pt-1">
-                        <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-3">루틴 완성 & 특수케어 (8~11회차)</h3>
-                        <div class="glass-inner rounded-2xl p-4 md:p-5 space-y-4">
+                    <div class="flex-grow pt-1.5 pb-2">
+                        <h3 class="text-xl font-black text-indigo-900 mb-4 flex items-center gap-2">루틴 완성 & 특수케어 <span class="text-sm font-bold text-indigo-800 bg-indigo-100/50 px-2 py-1 rounded-lg">8~11회차</span></h3>
+                        <div class="premium-glass-inner p-6 space-y-5">
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">8회차: 데콜테 테크닉 추가</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">8회차: 데콜테 테크닉 추가</span>
                                 <ul class="curriculum-list">
                                     <li>아쿠아필·필 제품 복습</li>
                                     <li>데콜테 시연 및 윤곽 수기 + 팩 연결</li>
                                 </ul>
                             </div>
-                            <div class="bg-indigo-100/50 backdrop-blur-sm p-4 rounded-xl border border-indigo-200/50">
-                                <span class="font-bold text-indigo-900 block mb-2 text-md">9회차: 하루 루틴 완성 (Full Course)</span>
-                                <ul class="curriculum-list text-slate-800 font-medium">
-                                    <li>폼클렌징 → 모공세척 → 아쿠아필</li>
-                                    <li>필 → 윤곽수기 → 데콜테 → 마스크팩</li>
+                            <div class="bg-indigo-50/70 border-l-4 border-indigo-400 p-4 rounded-xl shadow-sm">
+                                <span class="font-black text-indigo-900 block mb-2 text-lg">9회차: 하루 루틴 완성 (Full Course)</span>
+                                <ul class="curriculum-list text-slate-800 font-bold">
+                                    <li>폼클렌징 → 모공세척 → 아쿠아필 → 필 → 윤곽수기 → 데콜테 → 마스크팩</li>
                                     <li>자연스럽게 이어지는 전체 루틴 반복 연습</li>
                                 </ul>
                             </div>
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">10~11회차: 특수 부위 케어</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">10~11회차: 특수 부위 케어</span>
                                 <ul class="curriculum-list">
                                     <li>10회차: 얼굴 루틴 + <strong>액와(겨드랑이) 케어</strong> 실습</li>
                                     <li>11회차: 얼굴 루틴 + <strong>두피 케어</strong> 실습</li>
@@ -357,27 +413,27 @@
                 </div>
 
                 <!-- Phase 4 -->
-                <div class="flex gap-4 md:gap-6 relative last-connector">
+                <div class="flex gap-6 relative last-connector">
                     <div class="flex-shrink-0 relative z-10">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg text-lg">4</div>
+                        <div class="w-12 h-12 bg-white/90 border-4 border-amber-400 rounded-full flex items-center justify-center text-amber-600 font-black shadow-[0_4px_15px_rgba(251,191,36,0.4)] text-xl">4</div>
                     </div>
-                    <div class="flex-grow pt-1">
-                        <h3 class="text-lg md:text-xl font-bold text-amber-600 mb-3">실전 마스터 & 창업 (12~14회차)</h3>
-                        <div class="glass-inner rounded-2xl p-4 md:p-5 space-y-4">
+                    <div class="flex-grow pt-1.5">
+                        <h3 class="text-xl font-black text-amber-900 mb-4 flex items-center gap-2">실전 마스터 & 창업 <span class="text-sm font-bold text-amber-800 bg-amber-100/50 px-2 py-1 rounded-lg">12~14회차</span></h3>
+                        <div class="premium-glass-inner p-6 space-y-5">
                             <div>
-                                <span class="font-bold text-slate-800 block mb-1">12~13회차: 등 세척 & 실전 모델</span>
+                                <span class="font-black text-slate-800 block mb-2 text-lg">12~13회차: 등 세척 & 실전 모델</span>
                                 <ul class="curriculum-list">
                                     <li>등 세척 시연</li>
                                     <li>기본 페이스케어 루틴 완성</li>
                                     <li>실전 모델 케어 진행</li>
                                 </ul>
                             </div>
-                            <div class="bg-amber-100/70 p-5 rounded-xl border border-amber-300 backdrop-blur-sm">
-                                <span class="font-black text-amber-900 block mb-3 text-lg">⭐ 14회차: 실전 테스트 & 창업 컨설팅</span>
-                                <ul class="list-none space-y-2 text-sm text-slate-900 font-medium">
-                                    <li class="flex items-start"><span class="mr-2 text-amber-600 font-bold">✔</span> 모델 실전 테스트 및 테크닉 점검</li>
-                                    <li class="flex items-start"><span class="mr-2 text-amber-600 font-bold">✔</span> 메뉴 구성 및 가격 설정</li>
-                                    <li class="flex items-start"><span class="mr-2 text-amber-600 font-bold">✔</span> 창업 상담 & 샵 운영 노하우 전수</li>
+                            <div class="bg-gradient-to-r from-amber-50/80 to-white/60 border border-amber-300 p-5 rounded-2xl shadow-sm">
+                                <span class="font-black text-amber-900 block mb-3 text-lg flex items-center gap-2"><span>⭐</span> 14회차: 실전 테스트 & 창업 컨설팅</span>
+                                <ul class="list-none space-y-2 text-sm text-slate-900 font-bold">
+                                    <li class="flex items-start"><span class="mr-2 text-amber-600 text-lg">✔</span> 모델 실전 테스트 및 테크닉 점검</li>
+                                    <li class="flex items-start"><span class="mr-2 text-amber-600 text-lg">✔</span> 메뉴 구성 및 가격 설정</li>
+                                    <li class="flex items-start"><span class="mr-2 text-amber-600 text-lg">✔</span> 창업 상담 & 샵 운영 노하우 전수</li>
                                 </ul>
                             </div>
                         </div>
@@ -387,43 +443,40 @@
         </section>
 
         <!-- Additional Course (Official Name) -->
-        <section class="dark-glass text-white rounded-3xl shadow-xl p-6 md:p-12 overflow-hidden relative">
-            <div class="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-amber-500/30 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 -ml-10 -mb-10 w-40 h-40 bg-sky-500/30 rounded-full blur-3xl"></div>
-            
+        <section class="dark-glass text-white p-8 md:p-12 overflow-hidden relative">
             <div class="relative z-10">
-                <div class="flex flex-col md:flex-row items-start md:items-center gap-3 mb-6">
-                    <span class="bg-amber-500 text-slate-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Premium Benefits</span>
-                    <h2 class="text-xl md:text-3xl font-black text-amber-300 leading-tight">공식 상호(고원장) 사용 희망자 특혜</h2>
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-3 mb-8">
+                    <span class="premium-glass-pill bg-white/10 text-amber-300 border-white/20 text-xs font-black tracking-widest px-6 py-2 uppercase">Premium Benefits</span>
+                    <h2 class="text-2xl md:text-3xl font-black text-white leading-tight drop-shadow-md">공식 상호(고원장) 사용 특혜</h2>
                 </div>
                 
-                <p class="text-slate-200 mb-8 max-w-3xl text-sm md:text-base leading-relaxed">
+                <p class="text-slate-200 mb-8 max-w-3xl text-sm md:text-base leading-relaxed font-bold bg-black/20 p-5 rounded-2xl border border-white/10">
                     특허받은 '고원장 모공세척 테라피' 공식 상호 사용을 희망하시는 경우, 
-                    <strong>실제 고객 대상 20명 체험 케어</strong>와 <strong>모든 기계 실전 시술</strong> 혜택을 전폭 지원합니다.
+                    <strong class="text-amber-300">실제 고객 대상 20명 체험 케어</strong>와 <strong class="text-amber-300">모든 기계 실전 시술</strong> 혜택을 전폭 지원합니다.
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Benefit 1 -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 hover:bg-white/20 transition-colors">
-                        <div class="text-3xl mb-3 drop-shadow">👥</div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-2">20명 체험케어 지원</h3>
-                        <p class="text-amber-200 text-sm mb-3 font-bold">다양한 실제 고객 케이스 실습</p>
-                        <ul class="text-slate-300 text-sm space-y-2 list-disc list-inside">
-                            <li><strong>남 · 녀 성인 고객</strong> 실전 케어</li>
-                            <li><strong>청소년 (피지 · 트러블)</strong> 집중 케어</li>
-                            <li>압, 각도, 속도, 테크닉 숙달 확인</li>
+                    <div class="bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/10 hover:bg-white/10 transition-colors shadow-lg">
+                        <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center text-3xl mb-4 border border-white/20 shadow-[inset_0_2px_5px_rgba(255,255,255,0.2)]">👥</div>
+                        <h3 class="text-xl font-black text-white mb-2">20명 체험케어 지원</h3>
+                        <p class="text-amber-300 text-sm mb-4 font-bold tracking-wide">다양한 실제 고객 케이스 실습</p>
+                        <ul class="text-slate-300 text-sm space-y-3 font-semibold">
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span><strong>남 · 녀 성인 고객</strong> 실전 케어</li>
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span><strong>청소년 (피지 · 트러블)</strong> 집중 케어</li>
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span>압, 각도, 속도, 테크닉 숙달 확인</li>
                         </ul>
                     </div>
 
                     <!-- Benefit 2 -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 hover:bg-white/20 transition-colors">
-                        <div class="text-3xl mb-3 drop-shadow">⚡</div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-2">모든 기계 고객 실전 시술</h3>
-                        <p class="text-amber-200 text-sm mb-3 font-bold">교육장 내 모든 장비 마스터</p>
-                        <ul class="text-slate-300 text-sm space-y-2 list-disc list-inside">
-                            <li>고객에게 직접 <strong>모든 기계 시술</strong> 진행</li>
-                            <li>고주파 / 아쿠아필 / 미세전류 / 온열순환</li>
-                            <li>실제 샵 메뉴에 맞춘 기기 응용법 습득</li>
+                    <div class="bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/10 hover:bg-white/10 transition-colors shadow-lg">
+                        <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center text-3xl mb-4 border border-white/20 shadow-[inset_0_2px_5px_rgba(255,255,255,0.2)]">⚡</div>
+                        <h3 class="text-xl font-black text-white mb-2">모든 기계 고객 실전 시술</h3>
+                        <p class="text-amber-300 text-sm mb-4 font-bold tracking-wide">교육장 내 모든 장비 마스터</p>
+                        <ul class="text-slate-300 text-sm space-y-3 font-semibold">
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span>고객에게 직접 <strong>모든 기계 시술</strong> 진행</li>
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span>고주파 / 아쿠아필 / 미세전류 / 온열순환</li>
+                            <li class="flex items-start"><span class="mr-2 opacity-50">•</span>실제 샵 메뉴에 맞춘 기기 응용법 습득</li>
                         </ul>
                     </div>
                 </div>
@@ -431,16 +484,16 @@
         </section>
 
         <!-- Visualization 2: Theory vs Practice Balance -->
-        <section class="glass-card rounded-3xl p-6 md:p-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-center">
+        <section class="premium-glass p-8 md:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div class="lg:col-span-1">
-                    <h3 class="text-xl md:text-2xl font-black text-slate-800 mb-4 drop-shadow-sm">실습 압도적 중심의 철학</h3>
-                    <p class="text-slate-700 mb-6 font-medium text-sm md:text-base leading-relaxed">
+                    <h3 class="text-2xl font-black text-slate-800 mb-4 drop-shadow-sm">실습 압도적 중심의 철학</h3>
+                    <p class="text-slate-700 mb-6 font-bold text-sm md:text-base leading-relaxed">
                         전체 과정의 <strong>93%가 실무 실습</strong>으로 이루어져 있어, 수료 후 두려움 없이 즉각적으로 고객을 맞이하고 매출을 올릴 수 있습니다.
                     </p>
-                    <div class="p-4 bg-sky-100/60 backdrop-blur-sm rounded-xl border border-sky-300">
-                        <span class="block text-xs text-sky-700 font-black mb-1 tracking-wider">CORE POINT</span>
-                        <span class="text-slate-800 font-bold text-sm">기계 세팅부터 실전 고객 응대까지, 원조의 영업 비밀을 아낌없이 전수합니다.</span>
+                    <div class="p-5 premium-glass-inner">
+                        <span class="block text-xs text-sky-800 font-black mb-2 tracking-widest uppercase">Core Point</span>
+                        <span class="text-slate-800 font-bold text-sm leading-relaxed">기계 세팅부터 실전 고객 응대까지, 원조의 영업 비밀을 아낌없이 전수합니다.</span>
                     </div>
                 </div>
                 <div class="lg:col-span-2">
@@ -452,44 +505,50 @@
         </section>
 
         <!-- IP Warning Section & Refund Policy (Merged for Mobile) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
-            <section class="glass-inner border-l-8 border-amber-500 rounded-lg p-5 md:p-6 shadow-sm">
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-center gap-3">
-                        <div class="text-3xl text-amber-500 drop-shadow">⚠️</div>
-                        <h3 class="text-lg font-bold text-slate-800">특허권 주의사항</h3>
-                    </div>
-                    <p class="text-slate-700 text-sm leading-relaxed font-medium">
-                        <strong>'고원장 모공세척테라피'</strong>는 특허청에 정식 등록된 상호/기술입니다. 사전 승인 없이는 해당 상호를 임의로 사용하실 수 없습니다.
-                    </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6">
+            <section class="premium-glass-inner p-6 flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center text-xl shadow-sm border border-white">⚠️</div>
+                    <h3 class="text-lg font-black text-slate-800">특허권 주의사항</h3>
                 </div>
+                <p class="text-slate-800 text-sm leading-relaxed font-semibold bg-white/30 p-4 rounded-2xl border border-white/40">
+                    <strong>'고원장 모공세척테라피'</strong>는 특허청에 정식 등록된 상호/기술입니다. 사전 승인 없이는 해당 상호를 임의로 사용하실 수 없습니다.
+                </p>
             </section>
-            <section class="glass-inner border-l-8 border-slate-400 rounded-lg p-5 md:p-6 shadow-sm">
-                <div class="flex flex-col gap-3">
-                    <div class="flex items-center gap-3">
-                        <div class="text-3xl text-slate-500 drop-shadow">ℹ️</div>
-                        <h3 class="text-lg font-bold text-slate-800">취소 및 환불 안내</h3>
-                    </div>
-                    <p class="text-slate-700 text-sm leading-relaxed font-medium">
-                        사전 배포되는 영상 자료는 <strong class="text-rose-600">교육 필수 구성 요소</strong>입니다. 영상 발송 후 교육 취소 시 <strong class="text-rose-600">예약금 환불이 불가</strong>하오니 유의하시기 바랍니다.
-                    </p>
+            
+            <section class="premium-glass-inner p-6 flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center text-xl shadow-sm border border-white">ℹ️</div>
+                    <h3 class="text-lg font-black text-slate-800">취소 및 환불 안내</h3>
                 </div>
+                <p class="text-slate-800 text-sm leading-relaxed font-semibold bg-white/30 p-4 rounded-2xl border border-white/40">
+                    사전 배포되는 영상 자료는 <strong class="text-rose-600 bg-rose-100/50 px-1 rounded">교육 필수 구성 요소</strong>입니다. 영상 발송 후 교육 취소 시 <strong class="text-rose-600 bg-rose-100/50 px-1 rounded">예약금 환불이 불가</strong>하오니 유의하시기 바랍니다.
+                </p>
             </section>
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="dark-glass text-slate-300 py-12 mt-8">
+    <footer class="dark-glass text-slate-300 py-16 mb-8 mt-4 mx-4 md:mx-auto max-w-6xl">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <p class="font-black text-white text-xl md:text-2xl mb-2 drop-shadow-sm">고원장 모공세척 본점 (경기 광주)</p>
-            <p class="text-amber-400 font-extrabold text-2xl md:text-3xl mb-5 tracking-wider drop-shadow-sm flex items-center justify-center gap-2">
-                📱 010-9490-1714
-            </p>
-            <div class="w-12 h-1 bg-sky-500/50 mx-auto mb-6 rounded-full"></div>
-            <p class="text-base text-white font-bold mb-1">원장 고정숙</p>
-            <p class="text-sm text-sky-200 font-medium">20년 원조 기술 · 특허 등록 완료</p>
-            <p class="text-xs text-slate-500 mt-10">© 2024 Gowonjang Pore Cleansing Therapy. All rights reserved.</p>
+            <p class="font-black text-white text-xl md:text-2xl mb-8 drop-shadow-sm">고원장 모공세척 본점 (경기 광주)</p>
+            
+            <!-- Clickable Phone Call Button (Pill Design) -->
+            <a href="tel:010-9490-1714" class="premium-glass-pill interactive px-8 py-4 mb-10 text-white hover:text-sky-100 bg-sky-500/20 hover:bg-sky-500/30 border-white/30 text-decoration-none mx-auto group">
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-2xl shadow-sm border border-white/50 text-sky-600 group-hover:scale-110 transition-transform">📱</div>
+                    <span class="font-black text-2xl md:text-4xl tracking-widest drop-shadow-md">010-9490-1714</span>
+                </div>
+            </a>
+            <p class="text-sm font-bold text-sky-200 bg-white/5 inline-block px-4 py-1.5 rounded-full mb-8">☝️ 번호를 터치하면 바로 전화가 연결됩니다!</p>
+            
+            <div class="w-16 h-1.5 bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto rounded-full mb-8"></div>
+            
+            <p class="text-base text-white font-bold mb-1 tracking-wide">원장 고정숙</p>
+            <p class="text-sm text-sky-100/60 font-semibold mb-8">20년 원조 기술 · 특허 등록 완료</p>
+            
+            <p class="text-xs text-white/30 font-bold mt-10">© 2024 Gowonjang Pore Cleansing Therapy. All rights reserved.</p>
         </div>
     </footer>
 
@@ -520,7 +579,7 @@
 
         // 공통 폰트 설정
         Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
-        Chart.defaults.color = "#334155";
+        Chart.defaults.color = "#1e293b";
 
         // Chart 1: Curriculum Doughnut Chart
         const ctxCurriculum = document.getElementById('curriculumChart').getContext('2d');
@@ -534,13 +593,13 @@
                 datasets: [{
                     data: [10, 2, 1, 1],
                     backgroundColor: [
-                        'rgba(2, 132, 199, 0.9)', // Sky 600
-                        'rgba(34, 211, 238, 0.9)', // Cyan 400
-                        'rgba(245, 158, 11, 0.9)', // Amber 500
-                        'rgba(148, 163, 184, 0.9)'  // Slate 400
+                        'rgba(2, 132, 199, 0.8)', // Sky 600
+                        'rgba(34, 211, 238, 0.8)', // Cyan 400
+                        'rgba(245, 158, 11, 0.8)', // Amber 500
+                        'rgba(148, 163, 184, 0.8)'  // Slate 400
                     ],
-                    borderWidth: 2,
-                    borderColor: 'rgba(255,255,255,0.7)',
+                    borderWidth: 3,
+                    borderColor: 'rgba(255,255,255,0.9)',
                     hoverOffset: 10
                 }]
             },
@@ -551,18 +610,22 @@
                     legend: {
                         position: 'bottom',
                         labels: {
-                            font: { size: 11, weight: 'bold' },
+                            font: { size: 12, weight: 'bold' },
                             padding: 15,
                             usePointStyle: true,
-                            boxWidth: 8
+                            boxWidth: 10
                         }
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                        titleColor: '#0f172a',
+                        bodyColor: '#0f172a',
+                        borderColor: 'rgba(255, 255, 255, 0.9)',
+                        borderWidth: 1,
                         padding: 12,
-                        titleFont: { size: 13 },
-                        bodyFont: { size: 12 },
-                        cornerRadius: 8,
+                        titleFont: { size: 13, weight: 'bold' },
+                        bodyFont: { size: 13, weight: 'bold' },
+                        cornerRadius: 16,
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
@@ -591,10 +654,12 @@
                     label: '회차 수',
                     data: [1, 13],
                     backgroundColor: [
-                        'rgba(148, 163, 184, 0.8)', // Theory
-                        'rgba(14, 165, 233, 0.9)'  // Practice
+                        'rgba(148, 163, 184, 0.7)', // Theory
+                        'rgba(14, 165, 233, 0.85)'  // Practice
                     ],
-                    borderRadius: 6,
+                    borderWidth: 2,
+                    borderColor: 'rgba(255, 255, 255, 0.8)',
+                    borderRadius: 10,
                     barPercentage: 0.6
                 }]
             },
@@ -605,7 +670,7 @@
                 scales: {
                     x: {
                         grid: { display: false },
-                        ticks: { stepSize: 1, font: { size: 11 } },
+                        ticks: { stepSize: 1, font: { size: 11, weight: 'bold' } },
                         border: { display: false }
                     },
                     y: {
@@ -617,9 +682,15 @@
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                        cornerRadius: 8,
-                        padding: 10
+                        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                        titleColor: '#0f172a',
+                        bodyColor: '#0f172a',
+                        borderColor: 'rgba(255, 255, 255, 0.9)',
+                        borderWidth: 1,
+                        cornerRadius: 16,
+                        padding: 12,
+                        titleFont: { size: 13, weight: 'bold' },
+                        bodyFont: { size: 13, weight: 'bold' }
                     }
                 }
             }
