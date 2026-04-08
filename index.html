@@ -11,7 +11,7 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #e0f2fe; /* Fallback */
-            background-image: url('https://images.unsplash.com/photo-1549558549-415fe4c37b60?q=80&w=2000&auto=format&fit=crop');
+            background-image: url('./water-bg.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -41,11 +41,11 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 250px;
+            height: 280px;
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 350px;
+                height: 380px;
             }
         }
         
@@ -163,7 +163,7 @@
     <!-- Header Section -->
     <header class="pt-16 pb-12 px-4 relative overflow-hidden">
         <div class="max-w-6xl mx-auto text-center relative z-10 font-bold">
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight leading-tight text-slate-800 drop-shadow-sm">고원장 모공세척 창업교육</h1>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight leading-tight text-cyan-600" style="text-shadow: 1px 1px 3px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8);">고원장 모공세척 창업교육</h1>
             <p class="text-lg md:text-2xl font-bold text-sky-900 opacity-90 mb-8 drop-shadow-sm">20년 원조 기술 · 특허 등록 테라피 · 본점 정규과정</p>
             <div class="premium-glass-pill px-8 py-3 text-slate-800 font-extrabold shadow-lg">
                 정규 14회 커리큘럼 + 창업 컨설팅 🚀
@@ -261,12 +261,16 @@
                     <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">전문 핸드 테크닉</p>
                 </div>
                 <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
-                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">🧍</div>
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center mb-4 border border-white shadow-sm overflow-hidden">
+                        <img src="./body.jpg" alt="전신 순환 아이콘" class="w-full h-full object-cover" />
+                    </div>
                     <h4 class="font-black text-slate-800 mb-1 lg:text-lg">등 & 액와 & 두피</h4>
                     <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">전신 순환 케어</p>
                 </div>
                 <div class="premium-glass-inner p-6 flex flex-col items-center text-center hover:-translate-y-1 transition duration-300">
-                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center text-2xl mb-4 border border-white shadow-sm">🚀</div>
+                    <div class="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center mb-4 border border-white shadow-sm overflow-hidden">
+                        <img src="./startup.jpg" alt="창업 아이콘" class="w-full h-full object-cover" />
+                    </div>
                     <h4 class="font-black text-slate-800 mb-1 lg:text-lg">실전 창업</h4>
                     <p class="text-xs md:text-sm text-slate-600 font-bold bg-white/40 px-2 py-0.5 rounded-md mt-1">메뉴/가격/노하우 전수</p>
                 </div>
@@ -610,6 +614,9 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: { bottom: 20 }
+                },
                 plugins: {
                     legend: {
                         position: 'bottom',
@@ -671,6 +678,9 @@
                 indexAxis: 'y', 
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: { bottom: 20 }
+                },
                 scales: {
                     x: {
                         grid: { display: false },
