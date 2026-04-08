@@ -10,12 +10,9 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #e0f2fe; /* Fallback */
-            background-image: url('./water-bg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            background: linear-gradient(-45deg, #e0faff, #d4f4ff, #bae6fd, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             margin: 0;
             padding: 0;
             /* 텍스트 선명도 향상 */
@@ -151,6 +148,40 @@
             font-weight: 900;
         }
 
+        /* 배경 및 물방울 애니메이션 CSS */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .water-drop {
+            position: fixed;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.1) 100%);
+            box-shadow: inset 10px 10px 20px rgba(255,255,255,0.5), 
+                        inset -10px -10px 20px rgba(125,211,252,0.2), 
+                        15px 15px 30px rgba(0,0,0,0.05);
+            border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+            animation: liquidMove 8s ease-in-out infinite alternate, floatUp 25s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        @keyframes liquidMove {
+            0% { border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%; transform: rotate(0deg) scale(1); }
+            50% { border-radius: 50% 50% 40% 60% / 40% 60% 50% 50%; transform: rotate(15deg) scale(1.05); }
+            100% { border-radius: 60% 40% 50% 50% / 60% 50% 40% 40%; transform: rotate(-5deg) scale(0.95); }
+        }
+
+        @keyframes floatUp {
+            0% { top: 110vh; opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { top: -30vh; opacity: 0; }
+        }
+
         /* 모바일 패딩 조정 최적화 */
         @media (max-width: 768px) {
             .mobile-p-4 { padding: 1rem; }
@@ -159,6 +190,13 @@
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-sky-200 selection:text-sky-900">
+
+    <!-- 배경 물방울 애니메이션 객체들 -->
+    <div class="water-drop" style="width: 15rem; height: 15rem; left: 10%; animation-duration: 6s, 22s; animation-delay: 0s, 0s;"></div>
+    <div class="water-drop" style="width: 25rem; height: 25rem; right: -5%; animation-duration: 7s, 28s; animation-delay: 1s, 2s;"></div>
+    <div class="water-drop" style="width: 10rem; height: 10rem; left: 40%; animation-duration: 5s, 19s; animation-delay: 2s, 1s;"></div>
+    <div class="water-drop" style="width: 20rem; height: 20rem; right: 20%; animation-duration: 8s, 25s; animation-delay: 3s, 5s;"></div>
+    <div class="water-drop" style="width: 12rem; height: 12rem; left: -2%; animation-duration: 6s, 20s; animation-delay: 4s, 8s;"></div>
 
     <!-- Header Section -->
     <header class="pt-16 pb-12 px-4 relative overflow-hidden">
