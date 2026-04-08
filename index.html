@@ -32,17 +32,23 @@
             border-radius: 10px;
         }
 
+        /* 단어 도중 줄바꿈 방지 가독성 최적화 */
+        * {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
         .chart-container {
             position: relative;
             width: 100%;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 280px;
+            height: 330px; /* 범례 글자 잘림 완전 방지 (높이 확장) */
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 380px;
+                height: 420px;
             }
         }
         
