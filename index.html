@@ -605,30 +605,6 @@
     </footer>
 
     <script>
-        // --- Label Wrapping Logic ---
-        function formatLabel(str, maxwidth) {
-            const sections = [];
-            const words = str.split(" ");
-            let temp = "";
-            words.forEach(function(item, index) {
-                if (temp.length > 0) {
-                    const concat = temp + ' ' + item;
-                    if (concat.length > maxwidth) {
-                        sections.push(temp);
-                        temp = item;
-                    } else {
-                        temp = concat;
-                    }
-                } else {
-                    temp = item;
-                }
-                if (index === words.length - 1) {
-                    sections.push(temp);
-                }
-            });
-            return sections;
-        }
-
         // 공통 폰트 설정
         Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
         Chart.defaults.color = "#1e293b";
@@ -636,12 +612,11 @@
         // Chart 1: Curriculum Doughnut Chart
         const ctxCurriculum = document.getElementById('curriculumChart').getContext('2d');
         const curriculumLabels = ['얼굴 케어 (10회)', '등 케어 (2회)', '액와/두피 (1회)', '이론/OT (1회)'];
-        const formattedCurriculumLabels = curriculumLabels.map(l => formatLabel(l, 8)); 
 
         new Chart(ctxCurriculum, {
             type: 'doughnut',
             data: {
-                labels: formattedCurriculumLabels,
+                labels: curriculumLabels,
                 datasets: [{
                     data: [10, 2, 1, 1],
                     backgroundColor: [
@@ -659,14 +634,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: { bottom: 20 }
+                    padding: { top: 10, bottom: 25, left: 10, right: 10 }
                 },
                 plugins: {
                     legend: {
                         position: 'bottom',
                         labels: {
                             font: { size: 12, weight: 'bold' },
-                            padding: 15,
+                            padding: 20,
                             usePointStyle: true,
                             boxWidth: 10
                         }
@@ -692,8 +667,7 @@
                         }
                     }
                 },
-                cutout: '60%',
-                layout: { padding: 10 }
+                cutout: '60%'
             }
         });
 
