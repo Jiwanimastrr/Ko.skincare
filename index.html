@@ -6,10 +6,7 @@
     <title>고원장 모공세척 정규반 인포그래픽</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- html2canvas 라이브러리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- jsPDF 라이브러리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -444,97 +441,10 @@
         </div>
     </footer>
 
-    <!-- 다운로드 버튼 그룹 (우측 하단 고정) -->
-    <div id="download-ui-container" class="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
-        <button id="downloadPngBtn" onclick="downloadPNG()" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-full shadow-2xl flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 border-2 border-white/20 backdrop-blur-sm">
-            <span class="text-2xl">📸</span>
-            <span class="text-lg">이미지로 저장 (PNG)</span>
-        </button>
-        <button id="downloadPdfBtn" onclick="downloadPDF()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-2xl flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 border-2 border-white/20 backdrop-blur-sm">
-            <span class="text-2xl">📄</span>
-            <span class="text-lg">문서로 저장 (PDF)</span>
-        </button>
-    </div>
+
 
     <script>
-        // --- PNG 다운로드 로직 ---
-        function downloadPNG() {
-            const loadingMsg = document.createElement('div');
-            loadingMsg.id = 'png-loading-msg'; 
-            loadingMsg.innerHTML = '고화질 이미지 생성 중... 잠시만 기다려주세요.';
-            loadingMsg.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px; z-index: 9999; font-weight: bold;';
-            document.body.appendChild(loadingMsg);
 
-            html2canvas(document.body, {
-                scale: 2, // 고해상도 (2배)
-                logging: false,
-                useCORS: true,
-                allowTaint: true,
-                scrollX: 0,
-                scrollY: -window.scrollY,
-                windowWidth: document.documentElement.offsetWidth,
-                windowHeight: document.documentElement.scrollHeight,
-                ignoreElements: (element) => {
-                    // 캡처 시 로딩 메시지와 버튼 UI 제외
-                    if (element.id === 'pdf-loading-msg' || element.id === 'png-loading-msg' || element.id === 'download-ui-container') {
-                        return true;
-                    }
-                    return false;
-                }
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = '고원장_모공세척_창업교육_인포그래픽.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                document.body.removeChild(loadingMsg);
-            }).catch(err => {
-                console.error("이미지 생성 실패:", err);
-                alert("이미지 저장 중 오류가 발생했습니다.");
-                if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
-            });
-        }
-
-        // --- PDF 다운로드 로직 (jspdf) ---
-        function downloadPDF() {
-            const loadingMsg = document.createElement('div');
-            loadingMsg.id = 'pdf-loading-msg'; 
-            loadingMsg.innerHTML = 'PDF 생성 중... 잠시만 기다려주세요.';
-            loadingMsg.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px; z-index: 9999; font-weight: bold;';
-            document.body.appendChild(loadingMsg);
-
-            html2canvas(document.body, {
-                scale: 2, 
-                logging: false,
-                useCORS: true,
-                allowTaint: true,
-                scrollX: 0,
-                scrollY: -window.scrollY,
-                windowWidth: document.documentElement.offsetWidth,
-                windowHeight: document.documentElement.scrollHeight,
-                ignoreElements: (element) => {
-                    if (element.id === 'pdf-loading-msg' || element.id === 'png-loading-msg' || element.id === 'download-ui-container') {
-                        return true;
-                    }
-                    return false;
-                }
-            }).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const { jsPDF } = window.jspdf;
-                // 캔버스 크기에 맞춰 PDF 페이지 크기 설정 (페이지 잘림 방지)
-                const pdf = new jsPDF({
-                    orientation: 'p',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height] 
-                });
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save('고원장_모공세척_창업교육_인포그래픽.pdf');
-                document.body.removeChild(loadingMsg);
-            }).catch(err => {
-                console.error("PDF 생성 실패:", err);
-                alert("PDF 저장 중 오류가 발생했습니다.");
-                if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
-            });
-        }
 
         // --- Label Wrapping Logic ---
         function formatLabel(str, maxwidth) {
